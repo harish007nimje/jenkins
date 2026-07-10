@@ -23,7 +23,7 @@ variable "node_instance_type" {
   default = "c7i-flex.large"
 }
 
-project            = "cbz"
+project            = "lion"
 desired_nodes      = 2
 min_nodes          = 1
 max_nodes          = 3
