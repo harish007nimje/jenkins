@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+    stages {
+        stage('PULL') {
+            steps {
+                git branch: 'main', credentialsId: 'github', url: 'https://github.com/Bhagyash-raut/jenkins.git'
+            }
+        }
+        stage('PLAN') {
+            steps {
+                sh '''
+                       terraform init
+                       terraform plan '''
+            }
+        }
+        stage('APPLY') {
+            steps {
+                sh ''' terraform apply --auto-approve '''
+            }
+        }
+        stage('POST-APPLY-CHANGE') {
+            steps {
+                sh ''' aws eks update-kubeconfig --region  ap-south-2    --name  cbz-cluster '''
+            }
+        }        
+    }
+}
