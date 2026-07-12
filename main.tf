@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "ap-south-2"
+  region = "ap-south-1"
 }
 
 # Create an IAM Role for the EKS Cluster
@@ -78,7 +78,7 @@ data "aws_subnets" "default" {
 }
 
 # Create an EKS Cluster
-resource "aws_eks_cluster" "cbz_cluster" {
+resource "aws_eks_cluster" "harish_cluster" {
   name     = "${var.project}-cluster"
   role_arn = aws_iam_role.eks_cluster_role.arn
 
@@ -93,8 +93,8 @@ resource "aws_eks_cluster" "cbz_cluster" {
 }
 
 # Create a Node Group
-resource "aws_eks_node_group" "cbz_nodegroup" {
-  cluster_name    = aws_eks_cluster.cbz_cluster.name
+resource "aws_eks_node_group" "harish_nodegroup" {
+  cluster_name    = aws_eks_cluster.harish_cluster.name
   node_group_name = "${var.project}-node-group"
   node_role_arn   = aws_iam_role.eks_node_role.arn
   subnet_ids      = data.aws_subnets.default.ids
