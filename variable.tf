@@ -1,6 +1,6 @@
 variable "project" {
   type    = string
-  default = "cbz"
+  default = "harish"
 }
 
 variable "desired_nodes" {
