@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('PULL') {
             steps {
-                git branch: 'main', credentialsId: 'github', url: 'https://github.com/Bhagyash-raut/jenkins.git'
+                git branch: 'main', credentialsId: 'github', url: 'https://github.com/harish007nimje/jenkins.git'
             }
         }
         stage('PLAN') {
@@ -20,7 +20,7 @@ pipeline {
         }
         stage('POST-APPLY-CHANGE') {
             steps {
-                sh ''' aws eks update-kubeconfig --region  ap-south-2    --name  cbz-cluster '''
+                sh ''' aws eks update-kubeconfig --region  ap-south-1    --name  harish-cluster '''
             }
         }        
     }
